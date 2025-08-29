@@ -1,9 +1,13 @@
-from app.application.commands import CreateAnswerIteractor, RemoveAnswerIteractor
-from app.application.queries import GetAnswerIteractor
-from app.interface.schemas.answers import AnswerRequest, AnswerResponse
+from logging import getLogger
+
 from dishka.integrations.fastapi import DishkaRoute, FromDishka
 from fastapi import APIRouter, HTTPException
 
+from app.application.commands import CreateAnswerIteractor, RemoveAnswerIteractor
+from app.application.queries import GetAnswerIteractor
+from app.interface.schemas.answers import AnswerRequest, AnswerResponse
+
+logger = getLogger(__name__)
 router = APIRouter(tags=["Answers"], route_class=DishkaRoute)
 
 

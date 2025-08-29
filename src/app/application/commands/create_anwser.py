@@ -1,6 +1,10 @@
+import logging
+
 from app.application.common.dto import AnswerRequest, AnswerResponse
 from app.application.common.gateway import Gateway
 from app.domain.entities import Answer
+
+logger = logging.getLogger(__name__)
 
 
 class CreateAnswerIteractor:
@@ -8,6 +12,7 @@ class CreateAnswerIteractor:
         self._gateway = gateway
 
     def execute(self, id: int, body: AnswerRequest) -> AnswerResponse:
+        logger.info("Request to add a new answer to question")
         answer: Answer = self._gateway.create_answer(
             question_id=id,
             user_id=body.user_id,

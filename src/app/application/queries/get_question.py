@@ -1,3 +1,5 @@
+import logging
+
 from app.application.common.dto import (
     AnswerResponse,
     QuestionResponse,
@@ -5,17 +7,24 @@ from app.application.common.dto import (
 )
 from app.application.common.gateway import Gateway
 
+logger = logging.getLogger(__name__)
+
 
 class GetQuestionIteractor:
     def __init__(self, gateway: Gateway):
         self._gateway = gateway
 
-    def execute(self, id: int) -> QuestionWithAnswersResponse:
+    def execute(self, id: int) -> QuestionWithAnswersResponse | None:
+        logger.info("Request to get question with id=%s", id)
         result = self._gateway.get_question(id)
+
         if not result:
-            return result
+            logger.warning("Question with id=%s not found", id)
+            return None
 
         question, answers = result
+        logger.info("Question with id=%s retrieved successfully with %d answers", id, len(answers))
+
         return QuestionWithAnswersResponse(
             question=QuestionResponse(
                 id=question.id, text=question.text, created_at=question.created_at
