@@ -6,15 +6,15 @@ from uuid import UUID
 
 class Gateway(ABC):
     @abstractmethod
-    def get_all_questions(self) -> list[Question]:
+    def get_all_questions(self) -> list[Question] | None:
         pass
 
     @abstractmethod
-    def get_question(self, id: int) -> tuple[Question, list[Answer]]:
+    def get_question(self, id: int) -> tuple[Question, list[Answer]] | None:
         pass
 
     @abstractmethod
-    def get_answer(self, id: int) -> Answer:
+    def get_answer(self, id: int) -> Answer | None:
         pass
 
     @abstractmethod
@@ -22,13 +22,13 @@ class Gateway(ABC):
         pass
 
     @abstractmethod
-    def create_answer(self, question_id: int, user_id: UUID, text: str) -> Answer:
+    def create_answer(self, question_id: int, user_id: UUID, text: str) -> Answer | None:
         pass
 
     @abstractmethod
-    def remove_question(self, id: int) -> None:
+    def remove_question(self, id: int) -> Question | None:
         pass
 
     @abstractmethod
-    def remove_answer(self, id: int) -> None:
+    def remove_answer(self, id: int) -> Answer | None:
         pass

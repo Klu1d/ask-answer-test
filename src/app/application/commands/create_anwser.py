@@ -7,12 +7,14 @@ class CreateAnswerIteractor:
     def __init__(self, gateway: Gateway):
         self._gateway = gateway
 
-    def execute(self, body: AnswerRequest) -> AnswerResponse:
+    def execute(self, id: int, body: AnswerRequest) -> AnswerResponse:
         answer: Answer = self._gateway.create_answer(
-            question_id=body.question_id,
+            question_id=id,
             user_id=body.user_id,
             text=body.text,
         )
+        if answer is None:
+            return answer
         return AnswerResponse(
             id=answer.id,
             text=answer.text,

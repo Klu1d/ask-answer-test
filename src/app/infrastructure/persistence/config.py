@@ -1,4 +1,6 @@
-from pydantic import Field, BaseModel
+from os import environ as env
+
+from pydantic import BaseModel, Field
 
 
 class PostgresConfig(BaseModel):
@@ -10,7 +12,12 @@ class PostgresConfig(BaseModel):
 
     @property
     def uri(self) -> str:
-        full_url = "postgresql+psycopg://"
-        full_url += f"{self.user}:{self.password}"
-        full_url += f"@{self.host}:{self.port}/{self.database}"
-        return full_url
+        value = (
+            f"postgresql+psycopg://{self.user}:{self.password}"
+            f"@{self.host}:{self.port}/{self.database}"
+        )
+        return value
+
+
+class Config(BaseModel):
+    postgres: PostgresConfig = Field(default_factory=lambda: PostgresConfig(**env))

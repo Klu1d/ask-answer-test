@@ -1,13 +1,13 @@
 from datetime import datetime
 from uuid import UUID
 
-from pydantic import BaseModel
+from pydantic import BaseModel, constr
 
 
 class AnswerRequest(BaseModel):
-    question_id: UUID
+    # question_id: int
     user_id: UUID
-    text: str
+    text: str = constr(min_length=1, strip_whitespace=True)
 
 
 class AnswerResponse(BaseModel):

@@ -1,5 +1,5 @@
-from app.application.common.gateway import Gateway
 from app.application.common.dto import AnswerResponse
+from app.application.common.gateway import Gateway
 
 
 class GetAnswerIteractor:
@@ -8,6 +8,9 @@ class GetAnswerIteractor:
 
     def execute(self, id: int) -> AnswerResponse:
         answer = self._gateway.get_answer(id)
+        if not answer:
+            return answer
+
         return AnswerResponse(
             id=answer.id,
             text=answer.text,

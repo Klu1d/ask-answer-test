@@ -1,29 +1,44 @@
 from app.application.commands import CreateQuestionIteractor, RemoveQuestionIteractor
-from app.application.queries import GetQuestionIteractor, GetAllQuestionsIteractor
-from fastapi import APIRouter
+from app.application.queries import GetAllQuestionsIteractor, GetQuestionIteractor
+from app.interface.schemas.questions import QuestionRequest, QuestionResponse, QuestionWithAnswersResponse
+from app.interface.schemas.answers import AnswerResponse
+from dishka.integrations.fastapi import DishkaRoute, FromDishka
+from fastapi import APIRouter, HTTPException
 
-router = APIRouter(tags=["Questions"], prefix="questions")
+router = APIRouter(tags=["Questions"], prefix="/questions", route_class=DishkaRoute)
 
 
 @router.get("/")
-def get_all_questions(id: int):
+def get_all_questions(interactor: FromDishka[GetAllQuestionsIteractor]):
     """Cписок всех вопросов"""
-    pass
+    questions = interactor.execute()
+    return questions
 
 
 @router.post("/")
-def create_question(id: int):
+def create_question(
+    body: QuestionRequest, interactor: FromDishka[CreateQuestionIteractor]
+) -> QuestionResponse:
     """Cоздать новый вопрос"""
-    pass
+    question = interactor.execute(body)
+    return question
 
 
 @router.get("/{id}")
-def get_question(id: int):
+def get_question(
+    id: int, interactor: FromDishka[GetQuestionIteractor]
+) -> QuestionWithAnswersResponse:
     """Получить вопрос и все ответы на него"""
-    pass
+    question = interactor.execute(id)
+    if question is None:
+        raise HTTPException(status_code=404, detail=f"Question with id {id} not found")
+    return question
 
 
 @router.delete("/{id}")
-def remove_question(id: int):
+def remove_question(id: int, interactor: FromDishka[RemoveQuestionIteractor]) -> QuestionRequest:
     """Удалить вопрос"""
-    pass
+    question = interactor.execute(id)
+    if question is None:
+        raise HTTPException(status_code=404, detail=f"Question with id {id} not found")
+    return question

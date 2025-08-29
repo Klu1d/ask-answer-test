@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ask-answer-test"
+version = "0.1.0"
+dependencies = [
+    "SQLAlchemy",
+    "alembic", 
+    "fastapi",
+    "dishka",
+    "python-dotenv",
+    "psycopg",
+    "uvicorn"
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]

@@ -10,7 +10,7 @@ class QuestionRequest:
 
 @dataclass(slots=True)
 class AnswerRequest:
-    question_id: UUID
+    # question_id: int
     user_id: UUID
     text: str
 
@@ -29,3 +29,9 @@ class AnswerResponse:
     user_id: UUID
     question_id: int
     created_at: datetime
+
+
+@dataclass(slots=True)
+class QuestionWithAnswersResponse:
+    question: QuestionResponse
+    answers: list[AnswerResponse]
