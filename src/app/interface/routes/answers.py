@@ -18,9 +18,18 @@ def create_answer(
     interactor: FromDishka[CreateAnswerInteractor]
 ) -> AnswerResponse:
     """Добавить ответ к вопросу"""
+
+    text = body.text.strip()
+    if not text:
+        raise HTTPException(status_code=422, detail="Answer cannot be empty or contain only whitespace")
+
+    if len(text) < 4:
+        raise HTTPException(status_code=422, detail="Answer must be at least 4 characters long")
+
     answer = interactor.execute(id, body)
     if answer is None:
         raise HTTPException(status_code=404, detail=f"Question with id {id} not found")
+
     return answer
 
 

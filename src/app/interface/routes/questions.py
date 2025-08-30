@@ -27,6 +27,13 @@ def create_question(
     body: QuestionRequest, interactor: FromDishka[CreateQuestionInteractor]
 ) -> QuestionResponse:
     """Cоздать новый вопрос"""
+    text = body.text.strip()
+    if not text:
+        raise HTTPException(status_code=422, detail="Question cannot be empty or contain only whitespace")
+
+    if len(text) < 4:
+        raise HTTPException(status_code=422, detail="Question must be at least 4 characters long")
+        
     question = interactor.execute(body)
     return question
 

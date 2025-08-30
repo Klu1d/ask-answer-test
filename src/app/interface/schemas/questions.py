@@ -1,12 +1,12 @@
 from datetime import datetime
 
-from pydantic import BaseModel, constr
+from pydantic import BaseModel
 
 from app.interface.schemas.answers import AnswerResponse
 
 
 class QuestionRequest(BaseModel):
-    text: str = constr(min_length=1, strip_whitespace=True)
+    text: str
 
 
 class QuestionResponse(BaseModel):
