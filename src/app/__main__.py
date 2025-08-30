@@ -2,7 +2,6 @@ import logging
 
 import uvicorn
 from dishka import make_async_container
-# from asgi_monitor.logging.uvicorn import build_uvicorn_log_config
 from dishka.integrations.fastapi import setup_dishka
 from fastapi import FastAPI
 

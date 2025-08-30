@@ -5,15 +5,15 @@ from sqlalchemy.orm import Session, sessionmaker
 
 from app.application.common.gateway import Gateway
 from app.application.commands import (
-    CreateAnswerIteractor,
-    CreateQuestionIteractor,
-    RemoveAnswerIteractor,
-    RemoveQuestionIteractor,
+    CreateAnswerInteractor,
+    CreateQuestionInteractor,
+    RemoveAnswerInteractor,
+    RemoveQuestionInteractor,
 )
 from app.application.queries import (
-    GetAllQuestionsIteractor,
-    GetAnswerIteractor,
-    GetQuestionIteractor,
+    GetAllQuestionsInteractor,
+    GetAnswerInteractor,
+    GetQuestionInteractor,
 )
 from app.infrastructure.common.gateway import SQLAlchemyGateway
 from app.infrastructure.persistence.config import Config
@@ -34,10 +34,10 @@ class AppProvider(Provider):
 
     gateway = provide(SQLAlchemyGateway, provides=Gateway, scope=Scope.REQUEST)
 
-    create_answer_iteractor = provide(CreateAnswerIteractor, scope=Scope.REQUEST)
-    create_question_iteractor = provide(CreateQuestionIteractor, scope=Scope.REQUEST)
-    remove_iteractor_ = provide(RemoveAnswerIteractor, scope=Scope.REQUEST)
-    remove_question_iteractor_ = provide(RemoveQuestionIteractor, scope=Scope.REQUEST)
-    get_all_questions_iteractor = provide(GetAllQuestionsIteractor, scope=Scope.REQUEST)
-    get_answers_iteractor = provide(GetAnswerIteractor, scope=Scope.REQUEST)
-    get_question_iteractor = provide(GetQuestionIteractor, scope=Scope.REQUEST)
+    create_answer_Interactor = provide(CreateAnswerInteractor, scope=Scope.REQUEST)
+    create_question_Interactor = provide(CreateQuestionInteractor, scope=Scope.REQUEST)
+    remove_Interactor_ = provide(RemoveAnswerInteractor, scope=Scope.REQUEST)
+    remove_question_Interactor_ = provide(RemoveQuestionInteractor, scope=Scope.REQUEST)
+    get_all_questions_Interactor = provide(GetAllQuestionsInteractor, scope=Scope.REQUEST)
+    get_answers_Interactor = provide(GetAnswerInteractor, scope=Scope.REQUEST)
+    get_question_Interactor = provide(GetQuestionInteractor, scope=Scope.REQUEST)

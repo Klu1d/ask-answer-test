@@ -6,7 +6,7 @@ from app.domain.entities import Question
 logger = logging.getLogger(__name__)
 
 
-class RemoveQuestionIteractor:
+class RemoveQuestionInteractor:
     def __init__(self, gateway: Gateway):
         self._gateway = gateway
 

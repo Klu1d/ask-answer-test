@@ -10,7 +10,7 @@ from app.application.common.gateway import Gateway
 logger = logging.getLogger(__name__)
 
 
-class GetQuestionIteractor:
+class GetQuestionInteractor:
     def __init__(self, gateway: Gateway):
         self._gateway = gateway
 

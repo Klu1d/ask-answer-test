@@ -3,8 +3,8 @@ from logging import getLogger
 from dishka.integrations.fastapi import DishkaRoute, FromDishka
 from fastapi import APIRouter, HTTPException
 
-from app.application.commands import CreateAnswerIteractor, RemoveAnswerIteractor
-from app.application.queries import GetAnswerIteractor
+from app.application.commands import CreateAnswerInteractor, RemoveAnswerInteractor
+from app.application.queries import GetAnswerInteractor
 from app.interface.schemas.answers import AnswerRequest, AnswerResponse
 
 logger = getLogger(__name__)
@@ -15,7 +15,7 @@ router = APIRouter(tags=["Answers"], route_class=DishkaRoute)
 def create_answer(
     id: int,
     body: AnswerRequest,
-    interactor: FromDishka[CreateAnswerIteractor]
+    interactor: FromDishka[CreateAnswerInteractor]
 ) -> AnswerResponse:
     """Добавить ответ к вопросу"""
     answer = interactor.execute(id, body)
@@ -25,7 +25,7 @@ def create_answer(
 
 
 @router.get("/answers/{id}")
-def get_answer(id: int, interactor: FromDishka[GetAnswerIteractor]) -> AnswerResponse:
+def get_answer(id: int, interactor: FromDishka[GetAnswerInteractor]) -> AnswerResponse:
     """Получить конкретный ответ"""
     answer = interactor.execute(id)
     if answer is None:
@@ -34,7 +34,7 @@ def get_answer(id: int, interactor: FromDishka[GetAnswerIteractor]) -> AnswerRes
 
 
 @router.delete("/answers/{id}")
-def remove_answer(id: int, interactor: FromDishka[RemoveAnswerIteractor]) -> AnswerResponse:
+def remove_answer(id: int, interactor: FromDishka[RemoveAnswerInteractor]) -> AnswerResponse:
     """Удалить ответ"""
     answer = interactor.execute(id)
     if answer is None:

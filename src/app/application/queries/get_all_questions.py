@@ -4,7 +4,7 @@ from app.application.common.gateway import Gateway
 
 logger = logging.getLogger(__name__)
 
-class GetAllQuestionsIteractor:
+class GetAllQuestionsInteractor:
     def __init__(self, gateway: Gateway):
         self._gateway = gateway
 

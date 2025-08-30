@@ -1,11 +1,11 @@
-from .create_anwser import CreateAnswerIteractor
-from .create_question import CreateQuestionIteractor
-from .remove_answer import RemoveAnswerIteractor
-from .remove_question import RemoveQuestionIteractor
+from .create_anwser import CreateAnswerInteractor
+from .create_question import CreateQuestionInteractor
+from .remove_answer import RemoveAnswerInteractor
+from .remove_question import RemoveQuestionInteractor
 
 __all__ = [
-    "CreateAnswerIteractor",
-    "CreateQuestionIteractor",
-    "RemoveAnswerIteractor",
-    "RemoveQuestionIteractor",
+    "CreateAnswerInteractor",
+    "CreateQuestionInteractor",
+    "RemoveAnswerInteractor",
+    "RemoveQuestionInteractor",
 ]

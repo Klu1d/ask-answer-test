@@ -1,9 +1,9 @@
-from .get_all_questions import GetAllQuestionsIteractor
-from .get_answer import GetAnswerIteractor
-from .get_question import GetQuestionIteractor
+from .get_all_questions import GetAllQuestionsInteractor
+from .get_answer import GetAnswerInteractor
+from .get_question import GetQuestionInteractor
 
 __all__ = [
-    "GetAllQuestionsIteractor",
-    "GetQuestionIteractor",
-    "GetAnswerIteractor",
+    "GetAllQuestionsInteractor",
+    "GetQuestionInteractor",
+    "GetAnswerInteractor",
 ]

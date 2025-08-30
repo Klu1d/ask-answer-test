@@ -7,7 +7,7 @@ from app.domain.entities import Answer
 logger = logging.getLogger(__name__)
 
 
-class CreateAnswerIteractor:
+class CreateAnswerInteractor:
     def __init__(self, gateway: Gateway):
         self._gateway = gateway
 
