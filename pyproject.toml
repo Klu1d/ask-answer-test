@@ -2,6 +2,9 @@
 requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+
 [project]
 name = "ask-answer-test"
 version = "0.1.0"
@@ -12,7 +15,8 @@ dependencies = [
     "dishka",
     "python-dotenv",
     "psycopg",
-    "uvicorn"
+    "uvicorn",
+    "pytest"
 ]
 
 [tool.setuptools.packages.find]
